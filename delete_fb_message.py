@@ -33,12 +33,12 @@ def crw_fbbasic(url,l_url,user,pwd):
 	sbm_in=driver.find_element_by_xpath("//input[@name='login']")
 	sbm_in.submit()
 	#might require manual verification so I,m adding 60 sec of sleep to verify , assuming that 60 sec is enough time for verification 
-	#you might use automatic detection after verification using while(is_available_by_xpath(driver,X_PATH_FORMAT_HERE,10)==-1):
+	#you may use automatic detection of verification using while(is_available_by_xpath(driver,X_PATH_FORMAT_HERE,10)==-1):
 	time.sleep(60)
 	
 	#infinite loop
 	while(1):
-		#getting message page
+		#fetching message page
 		driver.get(url)
 		
 		msg_list=[]#list to hold message urls
@@ -54,9 +54,9 @@ def crw_fbbasic(url,l_url,user,pwd):
 		#else deleting one by one
 		cc=0
 		while(cc<len(msg_list)):#iterating over all the url in the list
-			#open message and click delete
+			#opening message and clicking on delete
 			driver.get(msg_list[cc])#opening url from list
-			dlt_bnt=driver.find_element_by_xpath("//input[@name='delete']")#getting delete button
+			dlt_bnt=driver.find_element_by_xpath("//input[@name='delete']")#fetchinng delete button
 			driver.execute_script("arguments[0].click();", dlt_bnt)#clicking it
 			#time.sleep(3)
 			while(is_available_by_xpath(driver,"//a[@class='bk bm']",10)==-1):#waiting for next page to load
